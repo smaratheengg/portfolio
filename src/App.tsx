@@ -238,7 +238,7 @@ export default function App() {
           </div>
           <MetadataBlock label="LINKEDIN" value="satishmarathe" href={data.linkedin} />
           <MetadataBlock label="GITHUB" value="smaratheengg" href={data.github} />
-          <MetadataBlock label="EMAIL" value="s.marathe@architect.io" href={`mailto:${data.email}`} />
+          <MetadataBlock label="EMAIL" value={data.email} href={`mailto:${data.email}`} />
         </motion.div>
       </header>
 
