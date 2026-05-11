@@ -207,27 +207,30 @@ export default function App() {
       
       {/* Header Section: Professional Polish Style */}
       <header className="flex flex-col border-b border-slate-800 pb-12 gap-10 pt-8">
-        {/* Row 1: Profile & Name */}
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-end gap-10 w-full px-2">
+        {/* Row 1: Profile (Left) & Name (Right) */}
+        <div className="flex flex-row justify-between items-end w-full px-2">
           {/* Profile Image with Ring and Glow */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="relative group w-32 h-32 md:w-40 md:h-40 xl:w-48 xl:h-48"
+            className="relative group w-24 h-24 md:w-32 md:h-32 xl:w-40 xl:h-40"
           >
             <div className="absolute inset-0 bg-sky-500/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-            <div className="relative w-full h-full rounded-2xl md:rounded-3xl border-2 border-slate-800 p-2 bg-slate-900 overflow-hidden transform group-hover:scale-[1.02] transition-transform duration-500">
+            <div className="relative w-full h-full rounded-2xl border-2 border-slate-800 p-1.5 bg-slate-900 overflow-hidden transform group-hover:scale-[1.02] transition-transform duration-500">
               <img 
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=400" 
+                src="/profile.jpg" 
                 alt={data.name}
                 className="w-full h-full object-cover rounded-xl md:rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-1000"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=400";
+                }}
                 referrerPolicy="no-referrer"
               />
             </div>
             {/* Status Badge */}
-            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-slate-950 border border-slate-800 px-4 py-1.5 rounded-full flex items-center gap-2 shadow-2xl z-20 whitespace-nowrap">
-              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_#10b981]" />
-              <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest font-bold">In-Transit: Pune_Zone</span>
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-slate-950 border border-slate-800 px-3 py-1 rounded-full flex items-center gap-1.5 shadow-2xl z-20 whitespace-nowrap">
+              <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_#10b981]" />
+              <span className="text-[8px] md:text-[9px] font-mono text-slate-400 uppercase tracking-widest font-bold">In-Transit: Pune_Zone</span>
             </div>
           </motion.div>
 
@@ -236,12 +239,12 @@ export default function App() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="flex flex-col items-center md:items-end text-center md:text-right"
+            className="flex flex-col items-end text-right"
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extralight tracking-tight text-white capitalize italic leading-none">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-white italic leading-none">
               {data.name}
             </h1>
-            <div className="h-px w-24 bg-sky-500/30 mt-4 hidden md:block" />
+            <div className="h-px w-24 bg-sky-500/30 mt-4" />
           </motion.div>
         </div>
 
