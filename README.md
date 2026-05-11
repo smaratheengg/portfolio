@@ -11,11 +11,16 @@ This portfolio leverages a "Technical Dashboard" aesthetic, reflecting the exper
 This project is configured to be deployed via **GitHub Actions**.
 
 ### Steps to Deploy:
-1. **Push your code** to the `main` branch of your GitHub repository (`smaratheengg/portfolio`).
+1. **Push your code** to the `main` (or `master`) branch of your GitHub repository.
 2. Go to your repository settings on GitHub.
 3. Click on **Pages** in the left sidebar.
 4. Under **Build and deployment > Source**, select **GitHub Actions**.
-5. The included workflow in `.github/workflows/deploy.yml` will automatically build and deploy your site whenever you push to `main`.
+5. The included workflow in `.github/workflows/deploy.yml` will automatically build and deploy your site whenever you push.
+
+### Troubleshooting:
+- **Blank Page?** Ensure the `base` name in `vite.config.ts` matches your repository name. If your repo is named something other than `portfolio`, update line 9 in `vite.config.ts`: `base: process.env.GITHUB_ACTIONS ? '/YOUR_REPO_NAME/' : '/'`.
+- **Action not running?** Check the **Actions** tab in your GitHub repository to see if there are any error logs.
+- **Permission denied?** Make sure you've selected "GitHub Actions" as the source in the Pages settings.
 
 **Note:** The site will be available at `https://smaratheengg.github.io/portfolio/`.
 
