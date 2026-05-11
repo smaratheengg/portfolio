@@ -207,13 +207,13 @@ export default function App() {
       
       {/* Header Section: Professional Polish Style */}
       <header className="flex flex-col border-b border-slate-800 pb-12 gap-10 pt-8">
-        {/* Row 1: Profile (Left) & Name (Right) */}
-        <div className="flex flex-row justify-between items-end w-full px-2">
+        {/* Row 1: Profile (Left) & Name (Centered in remaining space) */}
+        <div className="flex flex-row items-end w-full px-2 lg:px-6">
           {/* Profile Image with Ring and Glow */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="relative group w-24 h-24 md:w-32 md:h-32 xl:w-40 xl:h-40"
+            className="relative group w-24 h-24 md:w-36 md:h-36 xl:w-44 xl:h-44 shrink-0"
           >
             <div className="absolute inset-0 bg-sky-500/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
             <div className="relative w-full h-full rounded-2xl border-2 border-slate-800 p-1.5 bg-slate-900 overflow-hidden transform group-hover:scale-[1.02] transition-transform duration-500">
@@ -228,23 +228,28 @@ export default function App() {
               />
             </div>
             {/* Status Badge */}
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-slate-950 border border-slate-800 px-3 py-1 rounded-full flex items-center gap-1.5 shadow-2xl z-20 whitespace-nowrap">
+            <div className="absolute -bottom-2 md:-bottom-3 left-1/2 -translate-x-1/2 bg-slate-950 border border-slate-800 px-3 py-1 md:px-4 md:py-1.5 rounded-full flex items-center gap-1.5 md:gap-2 shadow-2xl z-20 whitespace-nowrap">
               <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_#10b981]" />
-              <span className="text-[8px] md:text-[9px] font-mono text-slate-400 uppercase tracking-widest font-bold">In-Transit: Pune_Zone</span>
+              <span className="text-[8px] md:text-[10px] font-mono text-slate-400 uppercase tracking-widest font-bold">In-Transit: Pune_Zone</span>
             </div>
           </motion.div>
 
-          {/* Name Section - Right Aligned */}
+          {/* Name Section - Centered in remaining space */}
           <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="flex flex-col items-end text-right"
+            className="flex-1 flex flex-col items-center text-center px-4"
           >
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-white italic leading-none">
-              {data.name}
-            </h1>
-            <div className="h-px w-24 bg-sky-500/30 mt-4" />
+            <div className="relative">
+              <h1 className="text-3xl md:text-6xl lg:text-7xl font-light tracking-tight text-white italic leading-none">
+                {data.name}
+              </h1>
+              {/* Decorative Accents */}
+              <div className="absolute -left-6 -top-2 w-4 h-4 border-t border-l border-sky-500/20 hidden md:block" />
+              <div className="absolute -right-6 -top-2 w-4 h-4 border-t border-r border-sky-500/20 hidden md:block" />
+            </div>
+            <div className="h-0.5 w-48 bg-gradient-to-r from-transparent via-sky-500/50 to-transparent mt-6 rounded-full" />
           </motion.div>
         </div>
 
