@@ -14,18 +14,21 @@ const TechnicalHeader = ({ title, icon: Icon }: { title: string; icon?: any }) =
   </div>
 );
 
-const MetadataBlock = ({ label, value, href }: { label: string; value: string; href?: string }) => (
-  <div className="text-left md:text-right border-l md:border-l-0 md:border-r border-slate-800 pl-4 md:pl-0 md:pr-4">
-    <p className="text-[10px] font-mono text-slate-500 uppercase tracking-tighter">{label}</p>
-    {href ? (
-      <a href={href} target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-sky-400 hover:text-sky-300 transition-colors">
-        {value}
-      </a>
-    ) : (
-      <p className="text-xs font-mono text-slate-200">{value}</p>
-    )}
-  </div>
-);
+const MetadataBlock = ({ label, value, href, align = "left" }: { label: string; value: string; href?: string; align?: "left" | "right" | "center" }) => {
+  const alignmentClass = align === "right" ? "text-right border-r pr-4" : align === "center" ? "text-center" : "text-left border-l pl-4";
+  return (
+    <div className={`py-1 ${alignmentClass} border-slate-800 transition-all duration-300 hover:border-sky-500/50 group`}>
+      <p className="text-[10px] font-mono text-slate-500 uppercase tracking-widest group-hover:text-sky-400 transition-colors uppercase">{label}</p>
+      {href ? (
+        <a href={href} target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-slate-200 hover:text-white transition-colors">
+          {value}
+        </a>
+      ) : (
+        <p className="text-xs font-mono text-slate-200">{value}</p>
+      )}
+    </div>
+  );
+};
 
 const SkillRequirement = ({ label, value, percentage, index }: { label: string; value: string; percentage: string; index?: number }) => (
   <motion.div 
@@ -202,49 +205,75 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col p-4 md:p-8 lg:p-12 gap-8 max-w-[1500px] mx-auto selection:bg-sky-500/30 font-sans">
       
-      {/* Header Section */}
-      <header className="flex flex-col border-b border-slate-800 pb-10 gap-10">
-        {/* Row 1: Name (Centered) */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="w-full text-center px-4"
-        >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-white uppercase italic leading-none inline-block">
-            {data.name}
-          </h1>
-          <div className="h-1 w-24 bg-sky-500/30 mx-auto mt-4 rounded-full" />
-        </motion.div>
-
-        {/* Row 2: Title & Metadata */}
-        <div className="flex flex-col xl:flex-row justify-between items-center xl:items-start gap-8 w-full">
+      {/* Header Section: Professional Polish Style */}
+      <header className="flex flex-col border-b border-slate-800 pb-12 gap-10 pt-8">
+        {/* Row 1: Profile & Name */}
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-end gap-10 w-full px-2">
+          {/* Profile Image with Ring and Glow */}
           <motion.div 
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="relative group w-32 h-32 md:w-40 md:h-40 xl:w-48 xl:h-48"
+          >
+            <div className="absolute inset-0 bg-sky-500/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+            <div className="relative w-full h-full rounded-2xl md:rounded-3xl border-2 border-slate-800 p-2 bg-slate-900 overflow-hidden transform group-hover:scale-[1.02] transition-transform duration-500">
+              <img 
+                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=400" 
+                alt={data.name}
+                className="w-full h-full object-cover rounded-xl md:rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-1000"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            {/* Status Badge */}
+            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-slate-950 border border-slate-800 px-4 py-1.5 rounded-full flex items-center gap-2 shadow-2xl z-20 whitespace-nowrap">
+              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_#10b981]" />
+              <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest font-bold">In-Transit: Pune_Zone</span>
+            </div>
+          </motion.div>
+
+          {/* Name Section - Right Aligned */}
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex flex-col items-center xl:items-start text-center xl:text-left flex-1"
+            transition={{ delay: 0.2 }}
+            className="flex flex-col items-center md:items-end text-center md:text-right"
+          >
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extralight tracking-tight text-white capitalize italic leading-none">
+              {data.name}
+            </h1>
+            <div className="h-px w-24 bg-sky-500/30 mt-4 hidden md:block" />
+          </motion.div>
+        </div>
+
+        {/* Row 2: Title & Summary */}
+        <div className="flex flex-col items-center md:items-start px-2">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
           >
             <div className="flex items-center gap-3">
                <div className="flex gap-1">
                   {[1, 2, 3].map(i => <div key={i} className="w-1.5 h-1.5 bg-sky-500/40 rounded-full animate-pulse" style={{ animationDelay: `${i * 0.2}s` }} />)}
                </div>
-               <p className="text-sky-400 font-mono text-sm tracking-[0.2em] uppercase font-bold">
+               <p className="text-sky-400 font-mono text-sm md:text-base tracking-[0.2em] uppercase font-bold">
                  {data.title}
                </p>
             </div>
             
-            <div className="mt-6">
+            <div className="mt-8">
               <button 
                 onClick={() => setIsSummaryOpen(!isSummaryOpen)}
-                className="flex items-center gap-2 group cursor-pointer"
+                className="flex items-center gap-3 group cursor-pointer"
               >
-                <div className="flex items-center gap-2 border-l-2 border-sky-500/50 pl-3">
-                  <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest group-hover:text-sky-400 transition-colors">Professional Summary</span>
+                <div className="flex items-center gap-3 border border-slate-800 px-6 py-2.5 rounded-full hover:border-sky-500/50 transition-all duration-300 bg-slate-900/50 hover:bg-sky-500/10">
+                  <span className="text-[11px] font-mono text-slate-500 uppercase tracking-[0.2em] group-hover:text-sky-400 transition-colors">Executive Summary</span>
                   <motion.div
                     animate={{ rotate: isSummaryOpen ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                     className="text-slate-600 group-hover:text-sky-500"
                   >
-                    <ChevronDown size={14} />
+                    <ChevronDown size={16} />
                   </motion.div>
                 </div>
               </button>
@@ -255,11 +284,11 @@ export default function App() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.4, ease: [0.65, 0, 0.35, 1] }}
+                    transition={{ duration: 0.5, ease: [0.65, 0, 0.35, 1] }}
                     className="overflow-hidden"
                   >
-                    <div className="mt-4 max-w-3xl">
-                      <div className="markdown-body text-slate-400 text-xs leading-relaxed italic border-l-2 border-sky-500/20 pl-4 py-1">
+                    <div className="mt-8 max-w-4xl">
+                      <div className="markdown-body text-slate-400 text-sm leading-relaxed italic border-l-2 border-sky-500/30 pl-8 py-3 text-left">
                         <ReactMarkdown>
                           {data.body}
                         </ReactMarkdown>
@@ -270,21 +299,25 @@ export default function App() {
               </AnimatePresence>
             </div>
           </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full xl:w-auto xl:pt-1"
-          >
-            <div className="text-left xl:text-right border-l xl:border-l-0 xl:border-r border-slate-800 pl-4 xl:pl-0 xl:pr-4">
-              <p className="text-[10px] font-mono text-slate-500 uppercase">LOCATION</p>
-              <p className="text-xs font-mono text-slate-200">{data.location}</p>
-            </div>
-            <MetadataBlock label="LINKEDIN" value="satishmarathe" href={data.linkedin} />
-            <MetadataBlock label="GITHUB" value="smaratheengg" href={data.github} />
-            <MetadataBlock label="EMAIL" value={data.email} href={`mailto:${data.email}`} />
-          </motion.div>
         </div>
+
+        {/* Row 3: Global Metadata Rails */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="flex flex-wrap justify-between items-center gap-x-8 gap-y-6 w-full pt-6 border-t border-slate-900 px-2"
+        >
+          <div className="text-left group">
+            <p className="text-[10px] font-mono text-slate-500 uppercase tracking-widest group-hover:text-sky-400">LOC_STATION</p>
+            <p className="text-xs font-mono text-slate-200 mt-1">{data.location}</p>
+          </div>
+          <div className="flex flex-wrap gap-8 md:gap-12">
+            <MetadataBlock label="LINKEDIN" value="/satishmarathe" href={data.linkedin} align="center" />
+            <MetadataBlock label="GITHUB" value="@smaratheengg" href={data.github} align="center" />
+            <MetadataBlock label="EMAIL" value={data.email} href={`mailto:${data.email}`} align="center" />
+          </div>
+        </motion.div>
       </header>
 
       {/* Main Grid */}
