@@ -203,76 +203,88 @@ export default function App() {
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col p-4 md:p-8 lg:p-12 gap-8 max-w-[1500px] mx-auto selection:bg-sky-500/30 font-sans">
       
       {/* Header Section */}
-      <header className="flex flex-col xl:flex-row justify-between items-start border-b border-slate-800 pb-8 gap-8">
+      <header className="flex flex-col border-b border-slate-800 pb-10 gap-10">
+        {/* Row 1: Name (Centered) */}
         <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="flex-1"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="w-full text-center px-4"
         >
-          <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-white mb-2 uppercase italic leading-none">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-white uppercase italic leading-none inline-block">
             {data.name}
           </h1>
-          <div className="flex items-center gap-3">
-             <div className="flex gap-1">
-                {[1, 2, 3].map(i => <div key={i} className="w-1.5 h-1.5 bg-sky-500/40 rounded-full animate-pulse" style={{ animationDelay: `${i * 0.2}s` }} />)}
-             </div>
-             <p className="text-sky-400 font-mono text-sm tracking-[0.2em] uppercase font-bold">
-               {data.title}
-             </p>
-          </div>
-          
-          <div className="mt-6">
-            <button 
-              onClick={() => setIsSummaryOpen(!isSummaryOpen)}
-              className="flex items-center gap-2 group cursor-pointer"
-            >
-              <div className="flex items-center gap-2 border-l-2 border-sky-500/50 pl-3">
-                <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest group-hover:text-sky-400 transition-colors">Professional Summary</span>
-                <motion.div
-                  animate={{ rotate: isSummaryOpen ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="text-slate-600 group-hover:text-sky-500"
-                >
-                  <ChevronDown size={14} />
-                </motion.div>
-              </div>
-            </button>
-            
-            <AnimatePresence>
-              {isSummaryOpen && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.4, ease: [0.65, 0, 0.35, 1] }}
-                  className="overflow-hidden"
-                >
-                  <div className="mt-4 max-w-3xl">
-                    <div className="markdown-body text-slate-400 text-xs leading-relaxed italic border-l-2 border-sky-500/20 pl-4 py-1">
-                      <ReactMarkdown>
-                        {data.body}
-                      </ReactMarkdown>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+          <div className="h-1 w-24 bg-sky-500/30 mx-auto mt-4 rounded-full" />
         </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full xl:w-auto xl:pt-2"
-        >
-          <div className="text-left py-2 border-l border-slate-800 pl-4">
-            <p className="text-[10px] font-mono text-slate-500 uppercase">LOCATION</p>
-            <p className="text-xs font-mono text-slate-200">{data.location}</p>
-          </div>
-          <MetadataBlock label="LINKEDIN" value="satishmarathe" href={data.linkedin} />
-          <MetadataBlock label="GITHUB" value="smaratheengg" href={data.github} />
-          <MetadataBlock label="EMAIL" value={data.email} href={`mailto:${data.email}`} />
-        </motion.div>
+        {/* Row 2: Title & Metadata */}
+        <div className="flex flex-col xl:flex-row justify-between items-center xl:items-start gap-8 w-full">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex flex-col items-center xl:items-start text-center xl:text-left flex-1"
+          >
+            <div className="flex items-center gap-3">
+               <div className="flex gap-1">
+                  {[1, 2, 3].map(i => <div key={i} className="w-1.5 h-1.5 bg-sky-500/40 rounded-full animate-pulse" style={{ animationDelay: `${i * 0.2}s` }} />)}
+               </div>
+               <p className="text-sky-400 font-mono text-sm tracking-[0.2em] uppercase font-bold">
+                 {data.title}
+               </p>
+            </div>
+            
+            <div className="mt-6">
+              <button 
+                onClick={() => setIsSummaryOpen(!isSummaryOpen)}
+                className="flex items-center gap-2 group cursor-pointer"
+              >
+                <div className="flex items-center gap-2 border-l-2 border-sky-500/50 pl-3">
+                  <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest group-hover:text-sky-400 transition-colors">Professional Summary</span>
+                  <motion.div
+                    animate={{ rotate: isSummaryOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-slate-600 group-hover:text-sky-500"
+                  >
+                    <ChevronDown size={14} />
+                  </motion.div>
+                </div>
+              </button>
+              
+              <AnimatePresence>
+                {isSummaryOpen && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.4, ease: [0.65, 0, 0.35, 1] }}
+                    className="overflow-hidden"
+                  >
+                    <div className="mt-4 max-w-3xl">
+                      <div className="markdown-body text-slate-400 text-xs leading-relaxed italic border-l-2 border-sky-500/20 pl-4 py-1">
+                        <ReactMarkdown>
+                          {data.body}
+                        </ReactMarkdown>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full xl:w-auto xl:pt-1"
+          >
+            <div className="text-left xl:text-right border-l xl:border-l-0 xl:border-r border-slate-800 pl-4 xl:pl-0 xl:pr-4">
+              <p className="text-[10px] font-mono text-slate-500 uppercase">LOCATION</p>
+              <p className="text-xs font-mono text-slate-200">{data.location}</p>
+            </div>
+            <MetadataBlock label="LINKEDIN" value="satishmarathe" href={data.linkedin} />
+            <MetadataBlock label="GITHUB" value="smaratheengg" href={data.github} />
+            <MetadataBlock label="EMAIL" value={data.email} href={`mailto:${data.email}`} />
+          </motion.div>
+        </div>
       </header>
 
       {/* Main Grid */}
