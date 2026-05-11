@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, BookOpen, Code, Award, ChevronRight, ChevronDown, Binary, Cloud, ShieldCheck, Terminal, Cpu, Database, Layout, Settings } from "lucide-react";
 import { loadContent } from "./lib/contentLoader";
 import { PORTFOLIO_DATA } from "./constants";
+import profileImg from "./assets/profile.jpg";
 
 const TechnicalHeader = ({ title, icon: Icon }: { title: string; icon?: any }) => (
   <div className="flex items-center gap-2 mb-4 border-b border-slate-800 pb-2">
@@ -218,7 +219,7 @@ export default function App() {
             <div className="absolute inset-0 bg-sky-500/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
             <div className="relative w-full h-full rounded-2xl border-2 border-slate-800 p-1.5 bg-slate-900 overflow-hidden transform group-hover:scale-[1.02] transition-transform duration-500">
               <img 
-                src="/profile.jpg" 
+                src={profileImg} 
                 alt={data.name}
                 className="w-full h-full object-cover rounded-xl md:rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-1000"
                 onError={(e) => {
