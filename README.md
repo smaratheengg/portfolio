@@ -6,6 +6,19 @@ A futuristic, high-performance technical portfolio built with React, Vite, Tailw
 
 This portfolio leverages a "Technical Dashboard" aesthetic, reflecting the expertise of a Software Architect specializing in GenAI, Cloud Computing, and Microservices. 
 
+## 🌐 Deployment to GitHub Pages
+
+This project is configured to be deployed via **GitHub Actions**.
+
+### Steps to Deploy:
+1. **Push your code** to the `main` branch of your GitHub repository (`smaratheengg/portfolio`).
+2. Go to your repository settings on GitHub.
+3. Click on **Pages** in the left sidebar.
+4. Under **Build and deployment > Source**, select **GitHub Actions**.
+5. The included workflow in `.github/workflows/deploy.yml` will automatically build and deploy your site whenever you push to `main`.
+
+**Note:** The site will be available at `https://smaratheengg.github.io/portfolio/`.
+
 ### Key Features:
 - **Architecture Log Viewer:** Dynamic content loading from Markdown files.
 - **Agentic Skill Visualization:** Animated competency bars highlighting expertise in LangGraph, RAG, and AKS.
