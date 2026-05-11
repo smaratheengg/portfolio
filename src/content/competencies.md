@@ -1,0 +1,55 @@
+---
+AI & GenAI Engineering:
+  - OpenAI
+  - Claude
+  - LangChain
+  - LangGraph
+  - RAG Pipelines
+  - Agentic AI
+  - MCP
+  - Prompt Engineering
+  - AI-Assisted Dev Tools (Claude Code, Cursor, GitHub Copilot)
+Cloud & Infrastructure:
+  - Azure AKS
+  - Azure Cosmos DB
+  - Azure PostgreSQL
+  - Azure OpenAI
+  - AWS EC2
+  - AWS EKS
+  - AWS S3
+DevOps & Orchestration:
+  - Kubernetes
+  - Helm
+  - Docker
+  - GitHub Actions
+  - Blue-Green Deployments
+  - Canary Deployments
+  - DataDog
+  - Grafana
+  - Prometheus
+  - OpenTelemetry
+Engineering & Architecture:
+  - Java (Spring Boot)
+  - Node.js
+  - Go
+  - Python
+  - C++
+  - React
+  - PostgreSQL
+  - Kafka
+  - OpenSearch
+  - Redis
+  - gRPC
+  - REST
+  - OpenAPI 3.0
+  - Event-Driven Architecture
+  - Microservices
+  - Multi-tenant SaaS Architecture
+Security & Compliance:
+  - Keycloak
+  - OAuth 2.0
+  - OIDC
+  - PCI-DSS
+  - GDPR
+  - HIPAA
+---
