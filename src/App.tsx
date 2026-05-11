@@ -230,7 +230,7 @@ export default function App() {
             {/* Status Badge */}
             <div className="absolute -bottom-2 md:-bottom-3 left-1/2 -translate-x-1/2 bg-slate-950 border border-slate-800 px-3 py-1 md:px-4 md:py-1.5 rounded-full flex items-center gap-1.5 md:gap-2 shadow-2xl z-20 whitespace-nowrap">
               <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_#10b981]" />
-              <span className="text-[8px] md:text-[10px] font-mono text-slate-400 uppercase tracking-widest font-bold">In-Transit: Pune_Zone</span>
+              <span className="text-[8px] md:text-[10px] font-mono text-slate-400 uppercase tracking-widest font-bold">Architecture: Optimal</span>
             </div>
           </motion.div>
 
@@ -480,10 +480,6 @@ export default function App() {
         <div className="flex flex-wrap items-center justify-center gap-8 uppercase">
           <span className="text-slate-400 font-bold tracking-widest italic group cursor-default">
             © {new Date().getFullYear()} <span className="group-hover:text-sky-400 transition-colors">S-MARATHE</span>
-          </span>
-          <span className="hidden sm:inline border-l border-slate-800 h-4" />
-          <span className="flex items-center gap-2 group cursor-pointer hover:text-slate-300 transition-colors">
-            <MapPin size={10} className="text-sky-500" /> PUNE_ZONE:020
           </span>
           <span className="hidden sm:inline border-l border-slate-800 h-4" />
           <span className="flex items-center gap-2 group cursor-pointer hover:text-slate-300 transition-colors uppercase">
